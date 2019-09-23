@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../static/styles/index.css" />
+  </head>
+
+  <body>
+    <div class="container-flex" style="background-color: black">
+      <!-- HEADER -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="row">
+            <div
+              class="col-lg-6"
+              style="background-color: darkblue;color:white;"
+            >
+              <p>In Progress</p>
+            </div>
+            <div class="col-lg-6" style="background-color:green;color:white;">
+              <p>Done</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" style="background-color: grey;text-align: center">
+          <p>
+            Unavailable
+          </p>
+        </div>
+      </div>
+      <!-- /HEADER -->
+      <hr />
+      <!-- BODY -->
+      <div class="row">
+        <div class="col-lg-3" id="InProgContainer">
+
+        </div>
+        <div class="col-lg-3" id="DoneContainer">
+
+        </div>
+      </div>
+      <!-- /BODY -->
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+  <script src="static/js/application.js"></script>
+
+  </body>
+</html>

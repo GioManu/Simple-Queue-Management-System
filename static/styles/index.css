@@ -1,0 +1,12 @@
+body {
+  background-color: black;
+  font-size: 500%;
+}
+
+div {
+  text-align: center;
+}
+
+div > p {
+  color: white;
+}
