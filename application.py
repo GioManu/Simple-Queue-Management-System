@@ -4,7 +4,7 @@ from flask import Flask, render_template
 from threading import Thread, Event
 
 from watchdog.events import PatternMatchingEventHandler
-from watchdog.observers import  Observer
+from watchdog.observers import Observer
 from CheckReader import checkReader
 
 from configuration import Configuration
@@ -21,41 +21,43 @@ thread = Thread()
 
 thread_stop_event = Event()
 
+
 class ServerThread(Thread):
     def __init__(self):
-        #define checkReader
+        # define checkReader
         self.reader = checkReader.CheckReader(Configuration)
 
         self.delay = Configuration.SCANNER_DELAY
 
-        #define eventHandler
-        self.event_handler = PatternMatchingEventHandler("*.txt", ignore_patterns="", ignore_directories=True, case_sensitive=False)
+        # define eventHandler
+        self.event_handler = PatternMatchingEventHandler("*.txt", ignore_patterns="", ignore_directories=True,
+                                                         case_sensitive=False)
 
-        #set events
+        # set events
         self.event_handler.on_modified = self.on_modified
 
-        #define Observer
+        # define Observer
         self.observer = Observer()
-        self.observer.schedule(self.event_handler,path="./",recursive=False)
+        self.observer.schedule(self.event_handler, path="./", recursive=False)
 
         super(ServerThread, self).__init__()
 
-        self.sendChecks()
-
-    def on_modified(self,event):
+    def on_modified(self, event):
         self.sendChecks()
 
     def sendChecks(self):
         res = self.reader.readChecks()
-        socketio.emit('Result',{'objects':res},namespace="/QueueMonitor")
+        socketio.emit('Result', {'objects': res}, namespace="/QueueMonitor")
 
     def run(self):
         self.observer.start()
 
+
 @app.route('/')
 def index():
-    #only by sending this page first will the client be connected to the socketio instance
-    return render_template('index_demo.html')
+    # only by sending this page first will the client be connected to the socketio instance
+    return render_template('Index.html')
+
 
 @socketio.on('connect', namespace='/QueueMonitor')
 def test_connect():
@@ -63,11 +65,14 @@ def test_connect():
     global thread
     print('Client connected')
 
-    #Start the random number generator thread only if the thread has not been started before.
+    # Start the random number generator thread only if the thread has not been started before.
     if not thread.isAlive():
         print("Starting Thread")
         thread = ServerThread()
         thread.start()
+    # first broadcast on connect
+    thread.sendChecks()
+
 
 @socketio.on('disconnect', namespace='/QueueMonitor')
 def test_disconnect():
@@ -75,4 +80,4 @@ def test_disconnect():
 
 
 if __name__ == '__main__':
-    socketio.run(app,host="0.0.0.0")
+    socketio.run(app, host="0.0.0.0")

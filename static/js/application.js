@@ -19,9 +19,9 @@ $(document).ready(function(){
         for (let [key, value] of Object.entries(msg.objects)) {
 
             if(value == "0"){
-                inPogress  = inPogress + '<div><p>' + key + '</p></div>';
+                inPogress  = inPogress + '<div class="check_nums" ><p>' + key + '</p></div>';
             }else{
-                Done = Done + '<div><p>' + key + '</p></div>';
+                Done = Done + '<div class="check_nums"><p>' + key + '</p></div>';
             }
           console.log(`${key}: ${value}`);
         }

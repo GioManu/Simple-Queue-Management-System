@@ -16,7 +16,7 @@ $(document).ready(function(){
         for (var i = 0; i < numbers_received.length; i++){
             numbers_string = numbers_string + '<div><p>' + numbers_received[i].toString() + '</p></div>';
         }
-//          $('#log').html(numbers_string);
+
         $('#InProgContainer').html(numbers_string);
         $('#DoneContainer').html(numbers_string);
     });

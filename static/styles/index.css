@@ -10,3 +10,8 @@ div {
 div > p {
   color: white;
 }
+
+.check_nums {
+    font-size:200px;
+    font-weight: bold;
+}
