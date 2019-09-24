@@ -11,21 +11,21 @@ $(document).ready(function(){
         if (numbers_received.length >= 10){
             numbers_received.shift()
         }
-
-        numbers_received.push(msg.objects);
+        console.log(msg.objects);
 
         inPogress = '';
         Done = '';
 
-        for (var i = 0; i < numbers_received.length; i++){
+        for (let [key, value] of Object.entries(msg.objects)) {
 
-            if(numbers_received[i].toString() == "0"){
-                inPogress  = inPogress + '<div><p>' + numbers_received[i].toString() + '</p></div>';
+            if(value == "0"){
+                inPogress  = inPogress + '<div><p>' + key + '</p></div>';
             }else{
-                Done = Done + '<div><p>' + numbers_received[i].toString() + '</p></div>';
+                Done = Done + '<div><p>' + key + '</p></div>';
             }
+          console.log(`${key}: ${value}`);
         }
-//          $('#log').html(numbers_string);
+
         $('#InProgContainer').html(inPogress);
         $('#DoneContainer').html(Done);
     });
