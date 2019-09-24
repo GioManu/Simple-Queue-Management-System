@@ -1,11 +1,13 @@
 # Start with a basic flask app webpage.
-from flask_socketio import SocketIO, emit
-from flask import Flask, render_template, url_for, copy_current_request_context
-from random import random
-from time import sleep
+from flask_socketio import SocketIO
+from flask import Flask, render_template
 from threading import Thread, Event
-from configuration import  Configuration
-from checkReader import  checkReader
+
+from watchdog.events import PatternMatchingEventHandler
+from watchdog.observers import  Observer
+from CheckReader import checkReader
+
+from configuration import Configuration
 
 __author__ = 'Gio_Manu'
 
@@ -18,33 +20,32 @@ socketio = SocketIO(app)
 
 #random number Generator Thread
 thread = Thread()
+
 thread_stop_event = Event()
 
-class RandomThread(Thread):
+class ServerThread(Thread):
     def __init__(self):
         self.reader = checkReader.CheckReader(Configuration)
-        self.delay = 2
-        super(RandomThread, self).__init__()
+        self.delay = Configuration.SCANNER_DELAY
 
-    def randomNumberGenerator(self):
-        #infinite loop of magical random numbers
-        print("Making random numbers")
-        while not thread_stop_event.isSet():
-            number = round(random()*10, 3)
-            print(number)
-            socketio.emit('newnumber', {'number': number}, namespace='/test')
-            sleep(self.delay)
+        #define eventHandler
+        self.event_handler = PatternMatchingEventHandler("*.txt", ignore_patterns="", ignore_directories=True, case_sensitive=False)
 
-    def getChecks(self):
-        while not thread_stop_event.isSet():
-            res = self.reader.readChecks()
-            print(res)
-            socketio.emit('Result',{'objects':res},namespace="/test")
-            sleep(self.delay)
+        #set events
+        self.event_handler.on_modified = self.on_modified
+
+        #define Observer
+        self.observer = Observer()
+        self.observer.schedule(self.event_handler,path="./",recursive=False)
+
+        super(ServerThread, self).__init__()
+
+    def on_modified(self,event):
+        res = self.reader.readChecks()
+        socketio.emit('Result',{'objects':res},namespace="/test")
 
     def run(self):
-        self.getChecks()
-
+        self.observer.start()
 
 @app.route('/')
 def index():
@@ -60,7 +61,7 @@ def test_connect():
     #Start the random number generator thread only if the thread has not been started before.
     if not thread.isAlive():
         print("Starting Thread")
-        thread = RandomThread()
+        thread = ServerThread()
         thread.start()
 
 @socketio.on('disconnect', namespace='/test')
