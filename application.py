@@ -13,19 +13,19 @@ __author__ = 'Gio_Manu'
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 
-#turn the flask app into a socketio app
 socketio = SocketIO(app)
 
-#random number Generator Thread
 thread = Thread()
 
 thread_stop_event = Event()
 
 class ServerThread(Thread):
     def __init__(self):
+        #define checkReader
         self.reader = checkReader.CheckReader(Configuration)
+
         self.delay = Configuration.SCANNER_DELAY
 
         #define eventHandler
@@ -40,9 +40,14 @@ class ServerThread(Thread):
 
         super(ServerThread, self).__init__()
 
+        self.sendChecks()
+
     def on_modified(self,event):
+        self.sendChecks()
+
+    def sendChecks(self):
         res = self.reader.readChecks()
-        socketio.emit('Result',{'objects':res},namespace="/test")
+        socketio.emit('Result',{'objects':res},namespace="/QueueMonitor")
 
     def run(self):
         self.observer.start()
@@ -52,7 +57,7 @@ def index():
     #only by sending this page first will the client be connected to the socketio instance
     return render_template('index_demo.html')
 
-@socketio.on('connect', namespace='/test')
+@socketio.on('connect', namespace='/QueueMonitor')
 def test_connect():
     # need visibility of the global thread object
     global thread
@@ -64,10 +69,10 @@ def test_connect():
         thread = ServerThread()
         thread.start()
 
-@socketio.on('disconnect', namespace='/test')
+@socketio.on('disconnect', namespace='/QueueMonitor')
 def test_disconnect():
     print('Client disconnected')
 
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app,host="0.0.0.0")
