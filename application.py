@@ -1,4 +1,6 @@
 # Start with a basic flask app webpage.
+from pathlib import Path
+
 from flask_socketio import SocketIO
 from flask import Flask, render_template
 from threading import Thread, Event
@@ -52,12 +54,17 @@ class ServerThread(Thread):
     def run(self):
         self.observer.start()
 
+def registerCheck(num,mode):
+    print("{}|{}".format(num,mode))
 
 @app.route('/')
 def index():
     # only by sending this page first will the client be connected to the socketio instance
     return render_template('Index.html')
 
+@app.route('/registerNum/<terminalID>/<checkNum>/<mode>')
+def registerNum(terminalID=None,checkNum=None,mode=None):
+    registerCheck(num=int(checkNum),mode=int(mode))
 
 @socketio.on('connect', namespace='/QueueMonitor')
 def test_connect():
