@@ -1,10 +1,10 @@
 # Start with a basic flask app webpage.
 from pathlib import Path
-
 from flask_socketio import SocketIO
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 from threading import Thread, Event
 
+from jsonpickle import json
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 from CheckReader import checkReader
@@ -55,16 +55,26 @@ class ServerThread(Thread):
         self.observer.start()
 
 def registerCheck(num,mode):
-    print("{}|{}".format(num,mode))
+    with open(Configuration.CHECKS_PATH,'a') as f:
+        f.write("\n")
+        f.write("{}|{}".format(num,mode))
 
 @app.route('/')
 def index():
-    # only by sending this page first will the client be connected to the socketio instance
     return render_template('Index.html')
 
-@app.route('/registerNum/<terminalID>/<checkNum>/<mode>')
-def registerNum(terminalID=None,checkNum=None,mode=None):
-    registerCheck(num=int(checkNum),mode=int(mode))
+@app.route('/distr')
+def distr():
+    return render_template('DistDisplay.html')
+
+@app.route('/registerNum/<mode>',methods=['POST'])
+def registerNum(mode=None):
+    data = request.get_json()
+    if not len(data) == 0:
+        for el in data:
+            registerCheck(num=int(el),mode=int(mode))
+
+    return json.dumps({"stats":200})
 
 @socketio.on('connect', namespace='/QueueMonitor')
 def test_connect():
