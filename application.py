@@ -1,5 +1,3 @@
-# Start with a basic flask app webpage.
-from pathlib import Path
 from flask_socketio import SocketIO
 from flask import Flask, render_template,request
 from threading import Thread, Event

@@ -7,10 +7,6 @@ $(document).ready(function() {
 
   //receive details from server
   socket.on("Result", function(msg) {
-    //maintain a list of ten numbers
-    if (numbers_received.length >= 10) {
-      numbers_received.shift();
-    }
 
     inPogress = "";
     Done = "";

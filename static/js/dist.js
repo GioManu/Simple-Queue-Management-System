@@ -1,5 +1,6 @@
 
 let closeBtn = document.getElementById("CloseCheckButton");
+let ScannerButton = document.getElementById("ScannerButton");
 
 let lis = document.getElementById("DoneContainer");
 

@@ -13,8 +13,9 @@
     text-align: center;
 }
 
-#CloseCheckButton{
+.optionButtons{
   font-size: 50%;
-  height: 200px;
+  height: 50%;
   width: 50%;
 }
+
