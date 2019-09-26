@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Distribution</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../static/styles/Default.css" />
+    <link rel="stylesheet" href="../static/styles/Dist.css" />
+  </head>
 
+  <body>
+    <div class="container-flex" style="background-color: black">
+      <!-- HEADER -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="row">
+            <div
+              class="col-lg-6"
+              style="background-color: darkblue;color:white;"
+            >
+              <p>In Progress</p>
+            </div>
+            <div class="col-lg-6" style="background-color:green;color:white;">
+              <p>Done</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" style="background-color: grey;text-align: center">
+          <p>
+            Options
+          </p>
+        </div>
+      </div>
+      <!-- /HEADER -->
+      <hr />
+      <!-- BODY -->
+      <div class="row">
+        <div class="col-lg-3" id="InProgContainer"></div>
+        <div class="col-lg-3" id="DoneContainer"></div>
+
+            <div class="col-lg-6" id="optionsPanel">
+                <button type="button" class="btn btn-warning" id="CloseCheckButton">Close Check</button>
+            </div>
+
+      </div>
+      <!-- /BODY -->
+    </div>
+    <script>
+
+    </script>
     <script src="static/js/jquery/jquery.js"></script>
     <script src="static/js/socketIO/socketIO.js"></script>
-</body>
+    <script src="static/js/application.js"></script>
+    <script src="static/js/dist.js"></script>
+  </body>
 </html>
