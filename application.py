@@ -2,7 +2,7 @@ from flask_socketio import SocketIO
 from flask import Flask, render_template,request
 from threading import Thread, Event
 
-from jsonpickle import json
+import json
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 from CheckReader import checkReader
@@ -58,8 +58,9 @@ def registerCheck(num,mode):
         f.write("{}|{}".format(num,mode))
 
 @app.route('/')
-def index():
-    return render_template('Index.html')
+@app.route('/<terminalID>')
+def index(terminalID = None):
+    return render_template('Index.html',value=terminalID)
 
 @app.route('/distr')
 def distr():

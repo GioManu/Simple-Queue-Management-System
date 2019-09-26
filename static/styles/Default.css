@@ -12,6 +12,21 @@ div > p {
 }
 
 .check_nums {
+    border-style: solid;
+    border-color: white;
     font-size:200px;
     font-weight: bold;
+}
+.selected {
+    background-color: coral;
+}
+
+#optionsPanel{
+    text-align: center;
+}
+
+.optionButtons{
+  font-size: 50%;
+  height: 50%;
+  width: 50%;
 }
