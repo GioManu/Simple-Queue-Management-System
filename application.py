@@ -73,7 +73,7 @@ def registerNum(mode=None):
         for el in data:
             registerCheck(num=int(el),mode=int(mode))
 
-    return json.dumps({"stats":200})
+    return json.dumps({"status":200})
 
 @socketio.on('connect', namespace='/QueueMonitor')
 def test_connect():
@@ -96,4 +96,4 @@ def test_disconnect():
 
 
 if __name__ == '__main__':
-    socketio.run(app, host="0.0.0.0")
+    socketio.run(app, host="0.0.0.0",port=int(80))
