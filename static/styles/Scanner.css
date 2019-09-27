@@ -5,6 +5,7 @@
   border-radius: 30px;
   position: relative;
   overflow: hidden;
+  justify-content: center;
 }
 
 .animation_btn {
@@ -19,10 +20,12 @@
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   position: relative;
+  border-radius: 30px;
+  background-color: white;
 }
 
 .animation_btn:hover {
-  color: green;
+  color: red;
 }
 
 .scan::before {
@@ -34,7 +37,7 @@
   z-index: 10;
   left: 0;
   opacity: 0.5;
-  background-color: green;
+  background-color: red;
   animation: scan 3s linear infinite;
 }
 

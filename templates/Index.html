@@ -1,82 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../static/styles/Default.css" />
-    <link rel="stylesheet" href="../static/styles/Scanner.css" />
-  </head>
 
-  <body>
-    <div class="container-flex" style="background-color: black">
-      <!-- HEADER -->
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="row">
-            <div
-              class="col-lg-6"
-              style="background-color: darkblue;color:white;"
-            >
-              <p>In Progress</p>
-            </div>
-            <div class="col-lg-6" style="background-color:green;color:white;">
-              <p>Done</p>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../static/styles/Scanner.css" />
+  <link rel="stylesheet" href="../static/styles/Default.css" />
+</head>
+
+<body>
+  <div class="container-flex" style="background-color: black">
+    <!-- HEADER -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-lg-6" style="background-color: darkblue;color:white;">
+            <p>In Progress</p>
           </div>
-        </div>
-        <div class="col-lg-6" style="background-color: grey;text-align: center">
-          {% if value is not none %}
-          <p>Options</p>
-          {% else %}
-          <p>Unavailable</p>
-          {% endif %}
+          <div class="col-lg-6" style="background-color:green;color:white;">
+            <p>Done</p>
+          </div>
         </div>
       </div>
-      <!-- /HEADER -->
-      <hr />
-      <!-- BODY -->
-      <div class="row">
-        <div class="col-lg-3" id="InProgContainer"></div>
-        <div class="col-lg-3" id="DoneContainer"></div>
-        {% if(value is not none)%}
-        <div class="col-lg-6" id="optionsPanel">
-          <button
-            type="button"
-            class="btn btn-danger optionButtons"
-            id="CloseCheckButton"
-          >
-            Close
-          </button>
-          <br />
-          <hr />
-
-          <div class="parent">
-            <button type="button" class="btn btn-success optionButtons animation_btn">
-              Finish
-            </button>
-            <div class="boom"></div>
-          </div>
-
-        </div>
+      <div class="col-lg-6" style="background-color: grey;text-align: center">
+        {% if value is not none %}
+        <p>Options</p>
+        {% else %}
+        <p>Unavailable</p>
         {% endif %}
       </div>
-      <!-- /BODY -->
     </div>
+    <!-- /HEADER -->
+    <hr />
+    <!-- BODY -->
+    <div class="row">
+      <div class="col-lg-3" id="InProgContainer"></div>
+      <div class="col-lg-3" id="DoneContainer"></div>
+      {% if(value is not none)%}
 
-    <script src="static/js/jquery/jQuery.js"></script>
-    <script src="static/js/socketIO/socketIO.js"></script>
-    <script src="static/js/application.js"></script>
-    {% if value is not none %}
-    <script src="static/js/scannerBtn.js"></script>
-    <script src="static/js/options.js"></script>
-    {% endif %}
-  </body>
+      <div class="col-lg-6" id="optionsPanel">
+
+        <div class="container parent">
+          <button type="button" class=" optionButtons" id="CloseCheckButton"> Close Order</button>
+        </div>
+
+        <br />
+
+        <div class="parent container">
+          <div class="animation_btn">
+            In Done
+          </div>
+          <div class="boom"></div>
+        </div>
+      </div>
+
+      {% endif %}
+    </div>
+    <!-- /BODY -->
+  </div>
+
+  <script src="static/js/jquery/jQuery.js"></script>
+  <script src="static/js/socketIO/socketIO.js"></script>
+  <script src="static/js/application.js"></script>
+  {% if value is not none %}
+  <script src="static/js/options.js"></script>
+  <script src="static/js/scannerBtn.js"></script>
+  {% endif %}
+</body>
+
 </html>
