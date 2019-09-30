@@ -1,6 +1,6 @@
 body {
   background-color: black;
-  font-size: 500%;
+  font-size: 300%;
 }
 
 div {
@@ -14,7 +14,7 @@ div > p {
 .check_nums {
     border-style: solid;
     border-color: white;
-    font-size:200px;
+    font-size:100%;
     font-weight: bold;
 }
 .selected {
