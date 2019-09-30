@@ -45,7 +45,9 @@
       <div class="col-lg-6" id="optionsPanel">
 
         <div class="container parent">
+
           <button type="button" class=" optionButtons" id="CloseCheckButton"> Close Order</button>
+
         </div>
 
         <br />
@@ -56,6 +58,9 @@
           </div>
           <div class="boom"></div>
         </div>
+
+        <input id="userInput" type="text" style="display: none;"/>
+
       </div>
 
       {% endif %}
@@ -67,7 +72,9 @@
   <script src="static/js/socketIO/socketIO.js"></script>
   <script src="static/js/application.js"></script>
   {% if value is not none %}
+  <script src="static/js/jquery/jQueryScanner.js"></script>
   <script src="static/js/options.js"></script>
+  <script src="static/js/barcodeScanner.js"></script>
   <script src="static/js/scannerBtn.js"></script>
   {% endif %}
 </body>
