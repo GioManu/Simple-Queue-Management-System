@@ -12,7 +12,12 @@ $(document).ready(function() {
     Done = "";
 
     for (let [key, value] of Object.entries(msg.objects)) {
-      if (value == "0") {
+      if(value == "0"){
+          closeChecksRequest([key],"1")
+          inPogress =
+          inPogress + '<div class="check_nums" ><p>' + key + "</p></div>";
+      }
+      else if (value == "1") {
         inPogress =
           inPogress + '<div class="check_nums" ><p>' + key + "</p></div>";
       } else {
@@ -24,3 +29,15 @@ $(document).ready(function() {
     $("#DoneContainer").html(Done);
   });
 });
+
+async function closeChecksRequest(data, mode) {
+  let url = `/registerNum/${mode}`;
+  console.log(url);
+  let response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8"
+    },
+    body: JSON.stringify(data)
+  });
+}

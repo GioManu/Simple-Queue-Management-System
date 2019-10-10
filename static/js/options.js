@@ -15,7 +15,7 @@ closeBtn.addEventListener("click", e => {
     data.push(elems[i].firstChild.innerText);
   }
   if (data.length > 0) {
-    closeChecksRequest(data, 1);
+    closeChecksRequest(data, 2);
   }
 });
 
@@ -30,10 +30,3 @@ async function closeChecksRequest(data, mode) {
     body: JSON.stringify(data)
   });
 }
-
-//setInterval(function(){
-//    if($('#userInput').val().length > 0 && !isNaN($('#userInput').val())){
-//       closeChecksRequest([$('#userInput').val().trim()],1);
-//    }
-//    $('#userInput').val("");
-//}, 1000);

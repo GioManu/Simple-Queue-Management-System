@@ -13,7 +13,7 @@ $(document).scannerDetection({
 	,
 	onError: function(string, qty) {
         $('#userInput').val (string);
-        closeChecksRequest([string],2);
+        closeChecksRequest([string],3);
         $('#userInput').val("");
 	}
 });
