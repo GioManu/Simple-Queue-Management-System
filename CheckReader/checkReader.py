@@ -23,7 +23,7 @@ class CheckReader:
                         chkDict[num] = state
                     else:
                         chkDict.update({num : state})
-            if len(chkDict) > 0 and not (str(self.conf.STATE_IN_PROGRESS) in chkDict.values() or str(self.conf.STATE_DONE) in chkDict.values()):
+            if len(chkDict) > 0 and not (str(self.conf.STATE_IN_PROGRESS) in chkDict.values() or str(self.conf.STATE_DONE) in chkDict.values() or str(self.conf.STATE_OPENED) in chkDict.values()):
                 raise Exception('CustomException','FileIsSafeToClean')
         except Exception:
             open(str(path) + "\\" + self.conf.CHECKS_PATH, 'w').close()

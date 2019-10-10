@@ -6,7 +6,6 @@ import json
 from watchdog.events import PatternMatchingEventHandler
 from watchdog.observers import Observer
 from CheckReader import checkReader
-
 from configuration import Configuration
 
 __author__ = 'Gio_Manu'
@@ -32,17 +31,16 @@ class ServerThread(Thread):
         # define eventHandler
         self.event_handler = PatternMatchingEventHandler("*.txt", ignore_patterns="", ignore_directories=True,
                                                          case_sensitive=False)
-
         # set events
         self.event_handler.on_modified = self.on_modified
 
-        # define Observer
+        #define Observer
         self.observer = Observer()
         self.observer.schedule(self.event_handler, path="./", recursive=False)
 
         super(ServerThread, self).__init__()
 
-    def on_modified(self, event):
+    def on_modified(self,event):
         self.sendChecks()
 
     def sendChecks(self):
