@@ -14,6 +14,7 @@ $(document).ready(function() {
     for (let [key, value] of Object.entries(msg.objects)) {
       if(value == "0"){
           closeChecksRequest([key],"1")
+          console.log("SignalForNewOrder : " + key)
           inPogress =
           inPogress + '<div class="check_nums" ><p>' + key + "</p></div>";
       }
