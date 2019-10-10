@@ -12,8 +12,13 @@ $(document).scannerDetection({
     }
 	,
 	onError: function(string, qty) {
-        $('#userInput').val (string);
-        closeChecksRequest([string],3);
+        let elem = document.getElementById(string);
+		if(elem != null){
+			if(elem.parentNode.id == "DoneContainer"){
+				$('#userInput').val (string);
+				closeChecksRequest([string],3);
+			}
+		}
         $('#userInput').val("");
 	}
 });
