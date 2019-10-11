@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/styles/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="../static/styles/Display/styles.css">
+</head>
+
+<body>
+    <div class="split left">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 label" style="background-color: #ffc107; border-right: solid;">
+                    <p>მზადდება</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 label" style="background-color: green">
+                    <p>გამზადებულია</p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 numContainer" id="InProgContainer" style="border-right: solid;">
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 numContainer" id="DoneContainer">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="split right video-back">
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" id="videoElement">
+            <!-- TODO : Make Dynamic -->
+            <source src="/static/video/1.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Scripts-->
+    <script src="static/js/jquery/jQuery.js"></script>
+    <script src="static/js/socketIO/socketIO.js"></script>
+    <script src="static/js/Display/connection.js"></script>
+</body>
+
+</html>

@@ -16,13 +16,14 @@ $(document).ready(function() {
           closeChecksRequest([key],"1")
           console.log("SignalForNewOrder : " + key)
           inPogress =
-          inPogress + '<div class="check_nums" ><p>' + key + "</p></div>";
+          inPogress + `<div class='check_nums' id=${key}><p>` + key + `</p></div>`;
       }
       else if (value == "1") {
-        inPogress =
-          inPogress + '<div class="check_nums" ><p>' + key + "</p></div>";
+          console.log("SignalForNewOrder : " + key)
+          inPogress =
+          inPogress + `<div class='check_nums' id=${key}><p>` + key + `</p></div>`;
       } else {
-        Done = Done + '<div class="check_nums"><p>' + key + "</p></div>";
+        Done = Done + `<div class='check_nums' id=${key}><p>` + key + `</p></div>`;
       }
     }
 

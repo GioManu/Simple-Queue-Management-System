@@ -58,6 +58,8 @@ def registerCheck(num,mode):
 @app.route('/')
 @app.route('/<terminalID>')
 def index(terminalID = None):
+    if terminalID is None:
+        return render_template('QueueDisplay.html')
     return render_template('Index.html',value=terminalID)
 
 @app.route('/distr')
