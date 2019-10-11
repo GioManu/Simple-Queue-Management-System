@@ -7,14 +7,14 @@ $(document).ready(function () {
     //receive details from server
     socket.on("Result", function (msg) {
 
-        const MaxSize = 2;
+        const MaxSize = 12;
 
         inPogress = [];
         Done = [];
 
         for (let [key, value] of Object.entries(msg.objects)) {
             if (value == "0") {
-                closeChecksRequest([key], "1")
+                registerNum([key], "1")
                 inPogress.push(key);
             }
             else if (value == "1") {
@@ -48,7 +48,7 @@ function pushToScreen(arr, MaxSize, containerID, isDone = false) {
     })
 }
 
-async function closeChecksRequest(data, mode) {
+async function registerNum(data, mode) {
     let url = `/registerNum/${mode}`;
     console.log(url);
     let response = await fetch(url, {
