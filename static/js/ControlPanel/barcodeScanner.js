@@ -12,6 +12,7 @@ $(document).scannerDetection({
 	}
 	,
 	onError: function (string, qty) {
+		string = String(parseInt(string, 10));
 		let elem = document.getElementById(string);
 		if (elem != null) {
 			if (elem.classList.contains("isDoneStatus")) {
