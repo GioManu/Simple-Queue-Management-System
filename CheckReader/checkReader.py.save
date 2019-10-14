@@ -13,7 +13,7 @@ class CheckReader:
         path = Path().absolute()
 
         try:
-            with open(str(path) + "/" + self.conf.CHECKS_PATH,'r') as f:
+            with open(str(path) + "\\" + self.conf.CHECKS_PATH,'r') as f:
                 data = [x.split() for x in f.readlines()]
 
             for el in data:
