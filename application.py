@@ -60,7 +60,7 @@ def registerCheck(num,mode):
 def index(terminalID = None):
     if terminalID is None:
         return render_template('QueueDisplay.html')
-    return render_template('Index.html',value=terminalID)
+    return render_template('ControlPanel.html')
 
 @app.route('/distr')
 def distr():

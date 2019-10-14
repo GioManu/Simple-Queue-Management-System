@@ -1,0 +1,54 @@
+body {
+    background-color: black;
+}
+
+.ordNum {
+    /* float: left; */
+    display: inline-block;
+    height: 45px;
+    width: 10%;
+    font-size: 100%;
+    color: white;
+    text-align: center;
+
+    border-style: solid;
+    border-width: 1px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+    -o-user-select:none;
+}
+
+.header {
+    color: white;
+    font-size: 200%;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 15%;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.btn {
+    width: 96%;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.isDoneStatus {
+    background-color: #006600;
+}
+.inProgressStatus {
+    background-color: #660033;
+}
+
+.selected {
+    background-color: red;
+}

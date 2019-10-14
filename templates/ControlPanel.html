@@ -6,11 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Control Panel</title>
+    <link rel="stylesheet" href="../static/styles/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="../static/styles/ControlPanel/styles.css">
+
 </head>
 
 <body>
+    <div class="container-fluid">
+        <div class="header">
+            <p>
+                შეკვეთები
+            </p>
+        </div>
 
+        <div id="ordContainer">
 
+        </div>
+
+        <div class="footer">
+            <button id="CloseCheckButton" type="button" class="btn btn-warning">სელექთ</button>
+            <input id="userInput" type="text" style="display: none;" />
+        </div>
+    </div>
+
+    <!-- Scripts-->
+    <script src="static/js/jquery/jQuery.js"></script>
+    <script src="static/js/socketIO/socketIO.js"></script>
+    <script src="static/js/ControlPanel/connection.js"></script>
+    <script src="static/js/jquery/jQueryScanner.js"></script>
+    <script src="static/js/ControlPanel/options.js"></script>
+    <script src="static/js/ControlPanel/barcodeScanner.js"></script>
 </body>
 
 </html>
